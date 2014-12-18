@@ -1,5 +1,5 @@
 # Extensions
-.pyc
-.txt
+*.pyc
+*.txt
 
 # End of gitignore
