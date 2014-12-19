@@ -1,7 +1,7 @@
 ## osu_player_stats.py
 ## Author: Daniel "Albinohat" Mercado
 ## 
-## This script creates a text file containing some quick user stats to display on a Twitch stream.
+## This script creates a text file containing some quick user statistics to display on a Twitch stream.
 
 ## Standard Imports
 import json, sys, time

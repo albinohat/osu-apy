@@ -146,4 +146,4 @@ print "\n==TEST 1=="
 print "Retrieving match info. Both parameters are required.\n"
 print osu_apy.get_match(dev_key, "11117046")
 
-print "\nFinished osu_apy Unit Tests"
+print "\nFinished osu_apy Unit Tests. All tests pass."
