@@ -13,9 +13,9 @@ if (len(sys.argv) != 2):
 	print "    Invalid Syntax. Usage: osu_apy_UnitTests.py key_file. key_file must contain your osu!api developer key."
 	sys.exit()
 
-f = open(sys.argv[1])
-
+f = open(sys.argv[1], "r")
 dev_key = f.read().strip()
+f.close()
 
 print "Starting osu_apy Unit Tests"
 
