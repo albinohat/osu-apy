@@ -227,6 +227,7 @@ def parameterize_mode(mode):
 	return mode
 
 ## parameterize_since - Formats a since as a PHP parameter.
+## since              - A MYSQL-formatted date which is the cut off for the time period in which to return data.
 def parameterize_since(since):
 	if (since == ""):
 		return since
@@ -237,6 +238,7 @@ def parameterize_since(since):
 		sys.exit()
 	
 ## parameterize_type - Formats a type as a PHP parameter.
+## type              - Specifies rather the user_id specified is an ID or a username.
 def parameterize_type(type):
 	if (type == ""):
 		return type
