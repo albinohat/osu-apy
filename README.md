@@ -1,6 +1,8 @@
 osu-apy
 ========
 
-osu-apy is a simply Python wrapper around the osu!api. https://github.com/peppy/osu-api/wiki
+osu-apy is a simply Python wrapper around the osu!api. 
 
-For full documentation, check out the wiki.
+For full osu!api documentation, check out their [wiki](https://github.com/peppy/osu-api/wiki).
+
+For full osu!apy documentation, check out our [wiki](https://github.com/albinohat/osu-apy/wiki).
