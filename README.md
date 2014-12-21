@@ -1,4 +1,4 @@
-osu-apy
+osu!apy
 ========
 
 osu-apy is a simple Python wrapper around the osu!api. 
