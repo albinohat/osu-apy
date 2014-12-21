@@ -11,13 +11,13 @@
 ## MSGQL time format - YYYY-MM-DD hh:mm:ss
 
 ## IDs
-## Beatmap set ID  - A 6 digit number from an https://osu.ppy.sh/s/ URL. i.e.) https://osu.ppy.sh/s/161848
+## Beatmap set ID  - A 6 digit number from an https://osu.ppy.sh/s/ URL.
 ##                       Corresponds to a collection of difficulties for a given song.
-## Beatmap ID      - A 6 digit number from an https://osu.ppy.sh/b/ URL. i.e.) https://osu.ppy.sh/b/394903
+## Beatmap ID      - A 6 digit number from an https://osu.ppy.sh/b/ URL.
 ##                       Corresponds to a single difficulty for a given song.
-## User ID         -    1. A 7 digit number from and https://osu.ppy.sh/u/ URL. i.e) https://osu.ppy.sh/u/2770894
-##                 -OR- 2. Someone's username from an https://osu.ppy.sh/u/ URL. i.e) https://osu.ppy.sh/u/albinohat
+## User ID         - A number or someone's username from an https://osu.ppy.sh/u/ URL.
 ##                       Corresponds to a user's profile.
+## Multiplayer ID  - A number from an https://osu.ppy.sh/mp/ URL. Corresponds to a multiplayer match history.
 
 ## Notes
 ## Omitted optional parameters should be supplied as null strings.
@@ -25,9 +25,11 @@
 ## Standard Imports
 import json, re, sys, urllib
 
-## Classless Methods
+## osu!apy Methods
 
 ## build_request - Returns the full API request URL using the provided base URL and parameters.
+## list_params   - The list of parameters to add to the end of the request URL.
+## URL - The base API request URL to append the list of parameters to.
 def build_request(list_of_params, url):
 	## Build the request URL.
 	for param in list_of_params:
@@ -39,11 +41,11 @@ def build_request(list_of_params, url):
 	return url[:-1]
 
 ## get_beatmaps - Returns a JSON payload containing information about a beatmap set or beatmap.
-## key          - Your API key.
-## since        - A MYSQL-formatted date which is the cut off for the time period in which to return data. (Optional)
-## set_id       - A beatmap set ID. (Optional)
-## beatmap_id   - A beatmap ID. (Optional)
-## user_id      - A user ID. (Optional)
+## key          - Your API key. (Required)
+## since        - A MYSQL-formatted date which is the cut off for the returned data.
+## set_id       - A beatmap set ID. 
+## beatmap_id   - A beatmap ID. 
+## user_id      - A user ID. 
 def get_beatmaps(key, since, set_id, beatmap_id, user_id):
 	## Create a list to store the attributes which are present.
 	list_of_params = []
@@ -60,7 +62,7 @@ def get_beatmaps(key, since, set_id, beatmap_id, user_id):
 	return urllib.urlopen(build_request(list_of_params, "https://osu.ppy.sh/api/get_beatmaps?")).read()
 
 ## get_match - Returns information about multiplayer match.
-## key       - Your API key.
+## key       - Your API key. (Required)
 ## multi_id  - A multiplayer match ID.
 def get_match(key, multi_id):
 	## Create a list to store the attributes which are present.
@@ -76,9 +78,9 @@ def get_match(key, multi_id):
 
 ## get_scores - Returns information about the top 50 scores of a specified beatmap.
 ## key        - Your API key.
-## beatmap_id - A beatmap ID. (Optional)
+## beatmap_id - A beatmap ID. 
 ## user_id    - A user ID.
-## mode       - The game mode for which to get info. (Optional)
+## mode       - The game mode for which to get info. 
 ##                  (0 = osu!, 1 = Taiko, 2 = CtB, 3 = osu!mania, Default = 0)
 def get_scores(key, beatmap_id, user_id, mode):
 	## Create a list to store the attributes which are present.
@@ -95,13 +97,13 @@ def get_scores(key, beatmap_id, user_id, mode):
 	return urllib.urlopen(build_request(list_of_params, "https://osu.ppy.sh/api/get_scores?")).read()
 
 ## get_user - Returns a JSON payload containing information about a beatmap set or beatmap.
-## key        - Your API key.
-## user_id    - A user ID.
-## mode       - The game mode for which to get info. (Optional)
+## key        - Your API key. (Required)
+## user_id    - A user ID. (Required)
+## mode       - The game mode for which to get info. 
 ##                  (0 = osu!, 1 = Taiko, 2 = CtB, 3 = osu!mania, Default = 0)
-## type       - Specifies rather the user_id specified is an ID or a username. (optional)
-##                  (id = id, string = username, default = Autodetect. Problematic with usernames comprised only of digits.)
-## event_days - Maximum number of days between now and last event date. (Optional)
+## type       - Specifies rather the user_id specified is an ID or a username. 
+##                  (id = id, string = username, default = Autodetect)
+## event_days - Maximum number of days between now and last event date. 
 ##                  (1 - 31, default = 1)
 def get_user(key, user_id, mode, type, event_days):	
 	## Create a list to store the attributes which are present.
@@ -119,14 +121,14 @@ def get_user(key, user_id, mode, type, event_days):
 	return urllib.urlopen(build_request(list_of_params, "https://osu.ppy.sh/api/get_user?")).read()
 
 ## get_user_best - Returns the top scores for the specified user.
-## key           - Your API key.	
-## user_id       - A user ID.
-## mode          - The game mode for which to get info. (Optional)
+## key           - Your API key. (Required)
+## user_id       - A user ID. (Required)
+## mode          - The game mode for which to get info. 
 ##                     (0 = osu!, 1 = Taiko, 2 = CtB, 3 = osu!mania, Default = 0)
-## limit         - # of results to return. (Optional)
+## limit         - # of results to return. 
 ##                     (1 - 50, Default = 10).
-## type          - Specifies rather the user_id specified is an ID or a username. (optional)
-##                     (id = id, string = username, default = Autodetect. Problematic with usernames comprised only of digits.)
+## type          - Specifies rather the user_id specified is an ID or a username. 
+##                     (id = id, string = username, default = Autodetect)
 def get_user_best(key, user_id, mode, limit, type):
 	## Create a list to store the attributes which are present.
 	list_of_params = []
@@ -143,12 +145,12 @@ def get_user_best(key, user_id, mode, limit, type):
 	return urllib.urlopen(build_request(list_of_params, "https://osu.ppy.sh/api/get_user_best?")).read()
 
 ## get_user_recent - Returns the user's ten most recent plays.
-## key             - Your API key.	
-## user_id         - A user ID.
-## mode            - The game mode for which to get info. (Optional)
+## key             - Your API key. (Required)
+## user_id         - A user ID. (Required)
+## mode            - The game mode for which to get info.
 ##                       (0 = osu!, 1 = Taiko, 2 = CtB, 3 = osu!mania, Default = 0)
-## type            - Specifies rather the user_id specified is an ID or a username. (optional)
-##                       (id = id, string = username, default = Autodetect. Problematic with usernames comprised only of digits.)
+## type            - Specifies rather the user_id specified is an ID or a username. 
+##                       (id = id, string = username, default = Autodetect)
 def get_user_recent(key, user_id, mode, type):
 	## Create a list to store the attributes which are present.
 	list_of_params = []
