@@ -11,9 +11,9 @@
 ## MSGQL time format - YYYY-MM-DD hh:mm:ss
 
 ## IDs
-## Beatmap set ID  - A 6 digit number from an https://osu.ppy.sh/s/ URL.
+## Beatmap set ID  - A number from an https://osu.ppy.sh/s/ URL.
 ##                       Corresponds to a collection of difficulties for a given song.
-## Beatmap ID      - A 6 digit number from an https://osu.ppy.sh/b/ URL.
+## Beatmap ID      - A number from an https://osu.ppy.sh/b/ URL.
 ##                       Corresponds to a single difficulty for a given song.
 ## User ID         - A number or someone's username from an https://osu.ppy.sh/u/ URL.
 ##                       Corresponds to a user's profile.

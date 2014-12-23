@@ -1,4 +1,5 @@
 # Extensions
+*.json
 *.log
 *.pyc
 *.txt
