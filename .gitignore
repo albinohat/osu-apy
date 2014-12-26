@@ -1,7 +1,8 @@
 # Extensions
-*.json
-*.log
-*.pyc
-*.txt
+**.bat
+**.json
+**.log
+**.pyc
+**.txt
 
 # End of gitignore

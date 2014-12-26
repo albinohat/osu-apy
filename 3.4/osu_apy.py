@@ -172,7 +172,7 @@ def parameterize_event_days(event_days):
 	elif (int(event_days) >= 1 and int(event_days) <= 31):
 		event_days = "event_days=" + str(event_days)
 	else:
-		print(("    Invalid event_days \"" + str(event_days) + ".\""))
+		print("    Invalid event_days \"" + str(event_days) + ".\"")
 		sys.exit()
 
 	return event_days
@@ -183,7 +183,7 @@ def parameterize_event_days(event_days):
 ## id              - A beatmap, beatmap set, or user ID.
 def parameterize_id(t, id):
 	if (t != "b" and t != "s" and t != "u" and t != "mp"):
-		print(("    Invalid type \"" + str(t) + ".\""))
+		print("    Invalid type \"" + str(t) + ".\"")
 		sys.exit()
 	
 	if (len(str(id)) != 0):
@@ -197,7 +197,7 @@ def parameterize_key(key):
 	if (len(key) == 40):
 		return "k=" + key
 	else:
-		print(("    Invalid key \"" + str(key) + ".\""))
+		print("    Invalid key \"" + str(key) + ".\"")
 		sys.exit()		
 
 ## parameterize_limit - Formats the limit as a PHP parameter.
@@ -209,7 +209,7 @@ def parameterize_limit(limit):
 	elif (int(limit) >= 1 and int(limit) <= 50):
 		limit = "limit=" + str(limit)
 	else:
-		print(("    Invalid limit \"" + str(limit) + ".\""))
+		print("    Invalid limit \"" + str(limit) + ".\"")
 		sys.exit()
 	
 	return limit
@@ -223,7 +223,7 @@ def parameterize_mode(mode):
 	elif (int(mode) >= 0 and int(mode) <= 3):
 		mode = "m=" + str(mode)
 	else:
-		print(("    Invalid mode \"" + str(mode) + ".\""))
+		print("    Invalid mode \"" + str(mode) + ".\"")
 		sys.exit()
 	
 	return mode
@@ -236,7 +236,7 @@ def parameterize_since(since):
 	if (re.match("[0-9]{4}\-[0-1]?[1-9]\-[0-3]?[1-9] [0-2]?[0-9]\:[0-5][0-9]\:[0-5][0-9]", since)):
 		return "since=" + str(since)
 	else:
-		print(("    Invalid since \"" + str(since) + ".\""))	
+		print("    Invalid since \"" + str(since) + ".\"")	
 		sys.exit()
 	
 ## parameterize_type - Formats a type as a PHP parameter.
@@ -247,7 +247,7 @@ def parameterize_type(type):
 	elif (type == "id" or type == "string"):
 		return 	"type=" + str(type)
 	else:
-		print(("    Invalid type \"" + str(type) + ".\""))	
+		print("    Invalid type \"" + str(type) + ".\"")	
 		sys.exit()
 
 ## End of classless methods.
